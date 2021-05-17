@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Row, Col, Slider, Typography } from "antd";
+import Header from "./components/Header";
+import React, { useState } from "react";
+import _Table from "./components/Table";
 
-function App() {
+const App = () => {
+  const [rows, setRows] = useState(5);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Row>
+        <Col xs={24} md={{ span: 12, offset: 6 }}>
+          <Typography.Title level={4}>
+            Number of Pokémon per page
+            <Slider min={5} max={50} deaultValue={rows}
+            onChange={setRows}/>
+          </Typography.Title>
+          <_Table rows={rows} />
+        </Col>
+      </Row>
+    </>
   );
-}
+};
 
 export default App;
